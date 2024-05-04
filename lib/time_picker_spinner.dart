@@ -188,9 +188,6 @@ class _TimePickerSpinnerState extends State<TimePickerSpinner> {
     hourController = ScrollController(initialScrollOffset: (currentSelectedHourIndex - 1) * _getItemHeight()!);
 
     currentSelectedMinuteIndex = (currentTime!.minute / widget.minutesInterval).floor() + (isLoop(_getMinuteCount()) ? _getMinuteCount() : 1);
-    minuteController = ScrollController(initialScrollOffset: (currentSelectedMinuteIndex - 1) * _getItemHeight()!);
-    //print(currentSelectedMinuteIndex);
-    //print((currentSelectedMinuteIndex - 1) * _getItemHeight()!);
 
     currentSelectedSecondIndex = (currentTime!.second / widget.secondsInterval).floor() + (isLoop(_getSecondCount()) ? _getSecondCount() : 1);
     secondController = ScrollController(initialScrollOffset: (currentSelectedSecondIndex - 1) * _getItemHeight()!);
@@ -207,7 +204,6 @@ class _TimePickerSpinnerState extends State<TimePickerSpinner> {
 
   @override
   Widget build(BuildContext context) {
-    // print(minuteController.offset);
     List<Widget> contents = [
       SizedBox(
         width: _getItemWidth(),
@@ -315,9 +311,6 @@ class _TimePickerSpinnerState extends State<TimePickerSpinner> {
             if (isLoop(max)) {
               int segment = (selectedIndex / max).floor();
               if (segment == 0) {
-                if (widget.haptics) {
-                  HapticFeedback.selectionClick();
-                }
                 onUpdateSelectedIndex(selectedIndex + max);
                 controller.jumpTo(controller.offset + (max * _getItemHeight()!));
               } else if (segment == 2) {
@@ -328,6 +321,9 @@ class _TimePickerSpinnerState extends State<TimePickerSpinner> {
             setState(() {
               onScrollEnd();
               if (widget.onTimeChange != null) {
+                if (widget.haptics) {
+                  HapticFeedback.selectionClick();
+                }
                 widget.onTimeChange!(getDateTime());
               }
             });

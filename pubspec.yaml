@@ -1,7 +1,7 @@
 name: time_picker_spinner_2
 description: Time Picker with spinner instead of a default material time picker. This widget works with 12 or 24 hour format and custom interval mode, and this package allow localization ar and en.
 version: 0.0.1
-homepage: https://github.com/MohamedAbd0/time_picker_spinner
+homepage: https://github.com/martinpelli/time_picker_spinner_2
 
 environment:
   sdk: ">=2.17.5 <3.0.0"
