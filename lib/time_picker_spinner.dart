@@ -216,7 +216,7 @@ class _TimePickerSpinnerState extends State<TimePickerSpinner> {
           1,
           (index) {
             if (index != currentSelectedHourIndex && widget.haptics) {
-              HapticFeedback.lightImpact();
+              HapticFeedback.selectionClick();
             }
             currentSelectedHourIndex = index;
             isHourScrolling = true;
@@ -235,6 +235,9 @@ class _TimePickerSpinnerState extends State<TimePickerSpinner> {
           isMinuteScrolling,
           widget.minutesInterval,
           (index) {
+            if (index != currentSelectedMinuteIndex && widget.haptics) {
+              HapticFeedback.selectionClick();
+            }
             currentSelectedMinuteIndex = index;
             isMinuteScrolling = true;
           },
@@ -255,6 +258,9 @@ class _TimePickerSpinnerState extends State<TimePickerSpinner> {
           isSecondsScrolling,
           widget.secondsInterval,
           (index) {
+            if (index != currentSelectedSecondIndex && widget.haptics) {
+              HapticFeedback.selectionClick();
+            }
             currentSelectedSecondIndex = index;
             isSecondsScrolling = true;
           },
