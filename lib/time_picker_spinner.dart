@@ -320,15 +320,18 @@ class _TimePickerSpinnerState extends State<TimePickerSpinner> {
             }
             setState(() {
               onScrollEnd();
+              if (widget.haptics) {
+                HapticFeedback.selectionClick();
+              }
               if (widget.onTimeChange != null) {
-                if (widget.haptics) {
-                  HapticFeedback.selectionClick();
-                }
                 widget.onTimeChange!(getDateTime());
               }
             });
           }
         } else if (scrollNotification is ScrollUpdateNotification) {
+          if (widget.haptics) {
+            HapticFeedback.selectionClick();
+          }
           setState(() {
             onUpdateSelectedIndex((controller.offset / _getItemHeight()!).round() + 1);
           });
